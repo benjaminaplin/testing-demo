@@ -1,0 +1,5 @@
+{"notes": [
+     {"id": 1, "slug": "myNote", "title": "note title", "markdown": "note text"},
+     {"id": 2, "slug": "myNote2", "title": "note 2 title", "markdown": "note 2 text"},
+     {"id": 3, "slug": "myNote3", "title": "note 3 title", "markdown": "note 3 text note note note note"}
+  ]}
