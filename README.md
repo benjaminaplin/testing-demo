@@ -1,6 +1,6 @@
 # Running the App
 
-- start the json server
+## start the json server
 ```
 json-server --watch db.json --port 3001
 ```
@@ -9,7 +9,7 @@ json-server --watch db.json --port 3001
 
 ## start mock service worker in the browser:
 - uncomment [this code](https://github.com/benjaminaplin/testing-demo/blob/main/src/App.tsx#L11)
-```
+```js
 if (process.env.NODE_ENV === 'development') {
    const { worker } = require('./mocks/browser')
    worker.start()
