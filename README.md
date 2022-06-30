@@ -7,6 +7,15 @@ json-server --watch db.json --port 3001
 - start the app
  `npm start`
 
+## start mock service worker in the browser:
+- uncomment [this code](https://github.com/benjaminaplin/testing-demo/blob/main/src/App.tsx#L11)
+```
+if (process.env.NODE_ENV === 'development') {
+   const { worker } = require('./mocks/browser')
+   worker.start()
+}
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
