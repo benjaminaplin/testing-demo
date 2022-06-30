@@ -8,6 +8,11 @@ import { useAsync } from './pages/notes/hooks'
 import { Loader } from './components/loader';
 export type Note = {id: number, slug?: string, title: string, markdown: string}
 
+// if (process.env.NODE_ENV === 'development') {
+//   const { worker } = require('./mocks/browser')
+//   worker.start()
+// }
+
 function App({notes, status}:{notes: Note[],  status: string}) {
  
   if(status === 'pending'){

@@ -8,17 +8,12 @@ function useSafeDispatch(dispatch: any) {
     return () => (mounted.current = false)
   }, [])
   return React.useCallback(
-    // @ts-ignores
+    // @ts-ignore
     (...args) => (mounted.current ? dispatch(...args) : void 0),
     [dispatch],
   )
 }
 
-// Example usage:
-// const {data, error, status, run} = useAsync()
-// React.useEffect(() => {
-//   run(fetchPokemon(pokemonName))
-// }, [pokemonName, run])
 const defaultInitialState = {status: 'idle', data: null, error: null}
 function useAsync(initialState: any) {
   const initialStateRef = React.useRef({
@@ -55,6 +50,7 @@ function useAsync(initialState: any) {
       safeSetState({status: 'pending'})
       return promise.then(
         (data: any) => {
+        // console.log("🚀 ~ file: hooks.ts ~ line 53 ~ useAsync ~ data", data)
             return data.json().then((data: any) => {
                 setData(data)
             })
@@ -74,7 +70,6 @@ function useAsync(initialState: any) {
     isLoading: status === 'pending',
     isError: status === 'rejected',
     isSuccess: status === 'resolved',
-
     setData,
     setError,
     error,

@@ -10,12 +10,13 @@ export const Loader = () => {
         justifyContent: 'center',
         alignItems: 'center'
       }}>
-
-      <NewtonsCradle 
-        size={55}
-        speed={1.4} 
-        color="papayawhip"
-        />
+        {/* ...waiting */}
+        
+              <NewtonsCradle 
+                size={55}
+                speed={1.4} 
+                color="papayawhip"
+                />
       </div>
     )
-}
+  }

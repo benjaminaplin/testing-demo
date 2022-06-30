@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "jsx": "react-jsx",
+    "outDir": "src",
+    "baseUrl": "./src",
+    "target": "es6", "strictPropertyInitialization": false, 
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,9 +16,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+
   },
-  "include": [
-    "src"
-  ]
+  "include": ["typings.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dist", "example"]
 }

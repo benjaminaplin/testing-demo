@@ -16,7 +16,7 @@ export function NoteForm({ fetchNotes }: { fetchNotes: () => void }) {
   const {status: postNoteStatus, run: runPostNote} = useAsync({})
   const {data: note, status: fetchNoteStatus, run: runFetchNote} = useAsync({})
   const { noteId } = useParams<{noteId: string}>()
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [noteToEdit, setNoteToEdit] = useState<Note | null>(note || null)
   
@@ -47,7 +47,6 @@ export function NoteForm({ fetchNotes }: { fetchNotes: () => void }) {
     }))
     await fetchNotes()
     navigate(noteId ? `/notes/${noteId}` : '/notes')
-
   } 
   if(fetchNoteStatus === 'pending'){
     return <Loader />
@@ -55,7 +54,7 @@ export function NoteForm({ fetchNotes }: { fetchNotes: () => void }) {
   if(noteToEdit &&  isEmpty(noteToEdit)){
     return <div>note note found :(</div>
   }
-
+  
   return (
       <div>
         <h2>{noteId ? 'Update Note' : 'Create Note'}</h2>

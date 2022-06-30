@@ -54,8 +54,8 @@ export function NoteView({note, fetchNotes}: {note?: Note, fetchNotes: () => voi
               onClick={() => handleDelete(note?.id || noteId)}>Delete</span>
           </div>
         </div>
-        <div style={{backgroundColor: '#2a314d', padding: '1rem'}}>
-          <Markdown>{markdown}</Markdown>
+        <div style={{backgroundColor: '#2a314d', padding: '1rem', flexWrap: 'wrap'}}>
+          <Markdown breaks gfm openLinksInNewTab>{markdown}</Markdown>
         </div>
       </div>
     );
