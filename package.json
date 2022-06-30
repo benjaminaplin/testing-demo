@@ -11,10 +11,14 @@
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "@uiball/loaders": "^1.2.6",
+    "jest-fetch-mock": "^3.0.3",
+    "marked": "^4.0.17",
+    "marked-react": "^1.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "ts-jest": "^28.0.5",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4"
   },
@@ -30,6 +34,12 @@
       "react-app/jest"
     ]
   },
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)?$": "ts-jest",
+      "^.+\\.(js|jsx)$": "babel-jest"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -41,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.18.6"
   }
 }

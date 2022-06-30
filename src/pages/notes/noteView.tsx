@@ -3,17 +3,19 @@ import { useEffect, useState } from 'react';
 import type { Note } from '../../App'
 import { useAsync } from './hooks';
 import { Loader } from '../../components/loader';
+import Markdown from 'marked-react';
 
-export function NoteView({note}: {note?: Note}) {
+export function NoteView({note, fetchNotes}: {note?: Note, fetchNotes: () => void}) {
     const {noteId} = useParams<{noteId: string}>()
     const {data: noteFromApi, status, run} = useAsync({})
+    const {status: delNoteStatus, run: runDelNote} = useAsync({})
 
     useEffect(() => {
-      if(!noteId || note || noteFromApi){
+      if(!noteId || note){
         return
       }
       run(fetch(`http://localhost:3001/notes/${noteId}`))
-    }, [noteId, run, note, noteFromApi])
+    }, [noteId, run, note])
 
   
     const [noteToDisplay, setNoteToDisplay] = useState(note || noteFromApi || null)
@@ -25,25 +27,36 @@ export function NoteView({note}: {note?: Note}) {
       setNoteToDisplay(noteFromApi)
     },[noteId, noteFromApi])
   
-  
-    if(status === 'pending'){
+    const handleDelete = async (noteId?: string | number) => {
+      await runDelNote(fetch(`http://localhost:3001/notes/${noteId}`, {method: 'DELETE'}))
+      fetchNotes()
+    }
+    if(status === 'pending' || delNoteStatus === 'pending'){
       return <Loader />
     }
     if(!noteToDisplay){
       return <div>no note!</div>
     }
 
-    const { title, slug, markdown, id} = noteToDisplay
+    const { title, markdown, id} = noteToDisplay
     return (
-      <div style={{border: '1px solid cornflowerblue', margin: '1rem', padding: '1rem'}}>
-          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'space-around'}}>
-            <span style={{margin: '.5rem 0', fontWeight: '600'}}><Link to={`/notes/${id}`}>Title</Link></span>
-            <span>{title}</span>
-            <span style={{margin: '.5rem 0', fontWeight: '600'}}>Slug</span>
-            <span>{slug}</span>
-            <span style={{margin: '.5rem 0', fontWeight: '600'}}>Markdown</span>
-            <span>{markdown}</span>
+      <div className='note-container'>
+        <div className='note-container__header'>
+          <Link
+            style={{margin: '.5rem 0', fontWeight: '600', fontSize: '2rem'}}
+            to={`/notes/${id}`}>
+              {title}
+          </Link>
+          <div>
+            <Link to={`/notes/${noteToDisplay.id}/update`}>Edit</Link>
+            <span
+              className='note-container__delete-btn'
+              onClick={() => handleDelete(note?.id || noteId)}>Delete</span>
           </div>
+        </div>
+        <div style={{backgroundColor: '#2a314d', padding: '1rem'}}>
+          <Markdown>{markdown}</Markdown>
+        </div>
       </div>
     );
   }

@@ -2,6 +2,51 @@
   text-align: center;
 }
 
+body {
+  background-color: #282c34;
+  color: wheat;
+  margin: 0 1rem;
+}
+
+form label {
+  margin-bottom: 0.75rem;
+}
+form label input {
+  margin-left: 0.5rem;
+}
+form textarea {
+  margin-bottom: 0.75rem;
+}
+.note-container {
+  border: 1px solid cornflowerblue;
+  margin: 1rem;
+  padding: 0 .5rem .5rem .5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.note-container__header {
+  border: 1px solid cornflowerblue;
+  margin: .5rem 0 0 0;
+  padding: .5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.note-container__delete-btn {
+  color: #f67b53;
+  height: 2rem;
+  width: 6rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.notes-container {
+  height: calc(100vh - 210px);
+  overflow-y: auto;
+  overflow-y: auto;
+  width: 80%;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -27,7 +72,9 @@
 .App-link {
   color: #61dafb;
 }
-
+a {
+  color: #61dafb;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
